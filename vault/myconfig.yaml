@@ -1,0 +1,10 @@
+---
+some: thing
+other: thing
+more:
+  - one
+  - two
+  - three
+# Secrets in Vault
+username: ref+vault://secret/demo/username
+password: ref+vault://secret/demo/password
