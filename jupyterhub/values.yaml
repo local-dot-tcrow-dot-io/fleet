@@ -988,7 +988,8 @@ proxy:
     public:
       ## @param proxy.service.public.type Public service type
       ##
-      type: LoadBalancer
+      type: ClusterIP
+        #type: LoadBalancer
       # HTTP Port
       ## @param proxy.service.public.ports.http Public service HTTP port
       ##
@@ -1352,7 +1353,7 @@ singleuser:
     #    tag: 1.5.0-debian-10-r112
     registry: registry.dev.tcrow.io
     repository: jupyter-base-notebook
-    tag: latest
+    tag: v20220312
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
