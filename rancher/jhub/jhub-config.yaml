@@ -1,0 +1,26 @@
+proxy:
+  secretToken: "c86812ddeccccf87c14148f4ab629f7991da41e77d4a6bf470943f0131c24918"
+singleuser:
+  image:
+    # Get the latest image tag at:
+    # https://hub.docker.com/r/jupyter/datascience-notebook/tags/
+    # Inspect the Dockerfile at:
+    # https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook/Dockerfile
+    name: "registry.tcrow.io/scipy-notebook"
+    tag: "latest"
+  defaultUrl: "/lab"
+  storage:
+    capacity: "2Gi"
+  extraEnv:
+    EDITOR: "vim"
+hub:
+  extraConfig:
+    jupyterlab: |
+      c.Spawner.default_url = "/lab"
+  config:
+    GitHubOAuthenticator:
+      client_id: '111aaa87ea8b4b3b5489'
+      client_secret: '4f016056b85496108240eb08b2eb7cec6abd5c97'
+      oauth_callback_url: 'https://jhub.tcrow.io/hub/oauth_callback'
+    JupyterHub:
+      authenticator_class: github
