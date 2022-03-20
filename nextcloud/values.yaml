@@ -196,67 +196,31 @@ nginx:
 
 internalDatabase:
   enabled: false
-  name: nextcloud
 
 ##
-## External database configuration
+## MariaDB chart configuration
 ##
-externalDatabase:
-  enabled: false
-
-  ## Supported database engines: mysql or postgresql
-  type: mysql
-
-  ## Database host
-  host:
-
-  ## Database user
-  user: nextcloud
-
-  ## Database password
-  password:
-
-  ## Database name
-  database: nextcloud
-
-  ## Use a existing secret
-  existingSecret:
-    enabled: false
-    # secretName: nameofsecret
-    # usernameKey: username
-    # passwordKey: password
-
 mariadb:
-  db:
-    name: nextcloud
-    password: db-password
-    user: nextcloud
+  ## Whether to deploy a mariadb server to satisfy the applications database requirements. To use an external database set this to false and configure the externalDatabase parameters
   enabled: true
-  master:
+
+  auth:
+    database: nextcloud
+    username: nextcloud
+    password: changeme
+
+  architecture: standalone
+
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  primary:
     persistence:
-      accessMode: ReadWriteOnce
       enabled: true
+      # storageClass: ""
+      accessMode: ReadWriteOnce
       size: 8Gi
-  replication:
-    enabled: false
-  rootUser:
-    password: root-db-password
-    forcePassword: true
 
-##
-## PostgreSQL chart configuration
-## for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
-##
-postgresql:
-  enabled: false
-  postgresqlUsername: nextcloud
-  postgresqlPassword: changeme
-  postgresqlDatabase: nextcloud
-  persistence:
-    enabled: false
-    # storageClass: ""
-
-##
 ## Redis chart configuration
 ## for more options see https://github.com/bitnami/charts/tree/master/bitnami/redis
 ##
